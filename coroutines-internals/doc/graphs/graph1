@@ -1,0 +1,11 @@
+digraph finite_state_machine {
+	rankdir=LR;
+	size="8"
+	node [shape = doublecircle]; main_0;
+	node [shape = circle];
+	main_0 -> save_rip [ label = "CALL jump_to_context()" ];
+	save_rip -> trampoline_0 [ label = "" ];
+	trampoline_0 -> alloc_tramp_frame [ label = "" ];
+	alloc_tramp_frame -> save_tramp_rip [ label = "CALL jump_to_context()" ];
+	save_tramp_rip -> main_0 [ label = "" ];
+}

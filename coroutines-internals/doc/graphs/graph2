@@ -1,0 +1,38 @@
+digraph G {
+
+	subgraph cluster_0 {
+		style=filled;
+		color=lightgrey;
+		node [style=filled,color=white];
+		init -> make_context -> jmp_to_ctx_0 -> jmp_to_ctx_2 -> resume_0 -> jmp_to_ctx_4 -> resume_1 -> jmp_to_ctx_6 -> cleanup;
+		label = "main (stack#1)";
+	}
+
+	subgraph cluster_1 {
+		node [style=filled];
+		trampoline -> jmp_to_ctx_1;
+		label = "trampoline (stack#2)";
+		color=blue
+	}
+        subgraph cluster_2 {
+		node [style=filled];
+		coro_0 -> yield_0 -> jmp_to_ctx_3 -> yield_1 -> jmp_to_ctx_5 -> ret;
+		label = "coroutine (stack#2)";
+		color=blue
+	}
+	start -> init;
+
+	jmp_to_ctx_0 -> trampoline;
+	jmp_to_ctx_1 -> jmp_to_ctx_0 [label="assign"];
+        jmp_to_ctx_2 -> coro_0;
+        jmp_to_ctx_3 -> jmp_to_ctx_2 [label="assign"];
+        jmp_to_ctx_4 -> jmp_to_ctx_3 [label="assign"];
+        jmp_to_ctx_5 -> jmp_to_ctx_4 [label="assign"];
+        jmp_to_ctx_6 -> jmp_to_ctx_5 [label="assign"];
+        ret -> jmp_to_ctx_6 [label="no assign"];
+
+        cleanup -> end;
+
+	start [shape=Mdiamond];
+	end [shape=Msquare];
+}

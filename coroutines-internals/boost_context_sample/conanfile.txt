@@ -1,0 +1,5 @@
+[requires]
+Boost/1.61.0@eliaskousk/stable
+
+[generators]
+cmake
