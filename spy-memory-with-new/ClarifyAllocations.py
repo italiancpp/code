@@ -22,7 +22,7 @@ if __name__ == "__main__":
 	total_size = 0;
 #	
 	# There are 2 types of lines in the output: stack frames and allocation sizes.
-	size_line  = re.compile("Allocation, size = (\d+) at (\d+)")  # Allocation, size = <byte> at <punto dell'heap>
+	size_line  = re.compile("Allocation, size = (\d+) at (\d+)")  # Allocation, size = <byte> at <pointer somewhere in the heap>
 	stack_line = re.compile(".*\((.*)\+.*\) \[(.*)\]")  # <rubbish>(mangled name) [<code pointer>]
 #
 	allocations_file = open("allocations.txt")
@@ -35,7 +35,7 @@ if __name__ == "__main__":
 		if (match_size):
 			allocation_size = int(match_size.group(1)) 
 			total_size += allocation_size
-			print "Allocati " + str(allocation_size)
+			print "Used " + str(allocation_size)
 #	
 		elif (match_stack):
 			mangled_name = match_stack.group(1)

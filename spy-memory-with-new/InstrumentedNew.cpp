@@ -22,7 +22,7 @@ static std::ofstream& resultFile() {
 }
 //
 /* This is the "magic" function that inspect the stack and writes it in a file. */
-static void dumpStackTrace(std::ofstream& memoryProfile) {
+void dumpStackTrace(std::ofstream& memoryProfile) {
   // Record 15 pointers to stackk frame - enough for the example program.
   const int maximumStackSize = 15;
   void *callStack[maximumStackSize];

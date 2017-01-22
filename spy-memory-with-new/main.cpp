@@ -18,7 +18,7 @@ int main(int argc, char **argv) {
     std::string * test = new std::string("abc");
 //
     SomeClass * oggetto = new SomeClass();
-    SomeClass();
+    MakeSomeClass();
 //
     boost::shared_ptr<SomeClass> smartPointer = boost::make_shared<SomeClass>();
     std::shared_ptr<SomeClass> stdSmartPointer = std::make_shared<SomeClass>();
