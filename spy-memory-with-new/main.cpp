@@ -2,8 +2,6 @@
    No delete - today's essay is not about memory leaks.*/
 #include <string>
 #include <memory>
-#include <boost/shared_ptr.hpp>
-#include <boost/make_shared.hpp>
 #include "SomeClass.h"
 //
 void h() {
@@ -20,7 +18,8 @@ int main(int argc, char **argv) {
     SomeClass * oggetto = new SomeClass();
     MakeSomeClass();
 //
-    boost::shared_ptr<SomeClass> smartPointer = boost::make_shared<SomeClass>();
+// The boost::shared_ptr example has been removed to simplify the dependencies.
+//
     std::shared_ptr<SomeClass> stdSmartPointer = std::make_shared<SomeClass>();
     return 0;
 }
