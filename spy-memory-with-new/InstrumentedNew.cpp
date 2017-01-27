@@ -43,7 +43,7 @@ void* operator new(std::size_t sz) {
       throw std::bad_alloc();
     // Share our allocations with the world.
     std::ofstream& memoryProfile = resultFile();
-    memoryProfile << "Allocation, size = " << sz << " at " << (unsigned long int) requestedMemory << std::endl;
+    memoryProfile << "Allocation, size = " << sz << " at " << static_cast<void*>(requestedMemory) << std::endl;
     dumpStackTrace(memoryProfile);
     memoryProfile << "-----------" << std::endl;  // Poor man's separator.
     
