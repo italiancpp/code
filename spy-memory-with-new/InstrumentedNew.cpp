@@ -29,7 +29,7 @@ void dumpStackTrace(std::ofstream& memoryProfile) {
   size_t framesInUse = backtrace(callStack, maximumStackSize);
   // Now callStack is full of pointers. Request the names of the functions matching each frame.
   char ** mangledFunctionNames = backtrace_symbols(callStack, framesInUse);
-  // Scrive tutte le stringhe con i nomi delle funzioni nello stream per il debug.
+  // Writes all the function names to the stream for debugging.
   for (int i = 0; i < framesInUse; ++i)
     memoryProfile << mangledFunctionNames[i] << std::endl;
   // To be fair, we should release mangledFunctionNames with free...
